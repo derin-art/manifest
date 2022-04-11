@@ -1,7 +1,8 @@
 import React from "react";
 
 
-export default function Major(){
+
+export default function Major(props){
     const [selectedCoin, setSelectedCoin] = React.useState("bitcoin")
 
     const [currencyInfo, setCurrencyInfo] = React.useState({
@@ -11,6 +12,7 @@ export default function Major(){
         icon: "",
         name: "",
     })
+
 
     const getCoinInfo = async ()=>{
         const data = await fetch(`https://api.coingecko.com/api/v3/coins/${selectedCoin}`)
@@ -25,14 +27,12 @@ export default function Major(){
 
         }))
     }
+    props.changeTheme.setThemeSettings("Blue")
 
     React.useEffect(()=>{
         getCoinInfo()
     }, [])
 
     console.log(currencyInfo)
-    return <div>
-        
-
-    </div>
+    return <div>Hey nice</div>
 }

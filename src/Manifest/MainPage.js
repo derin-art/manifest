@@ -1,10 +1,14 @@
+import { data } from "autoprefixer";
 import React from "react";
+import Side from "./Major";
+
 
 export default function MainPage(){
     const [backGroundImg, setBackGround]= React.useState({
         img: "",
         author: ""
     })
+    const [themeSettings, setThemeSettings] = React.useState("RED")
     const [time,setTime] = React.useState("")
     const [backGroundType, setBackGroundType] = React.useState("nature")
 
@@ -33,16 +37,16 @@ export default function MainPage(){
         fetchImage()
     }, [])
 
-    console.log(backGroundImg)
     return <div className={`w-screen h-screen flex flex-col justify-center`} style= {{
-    "background-image": `url(${backGroundImg.img})`,
-     "backgroundRepeat": "no-repeat",
-     "backgroundSize": "cover"}
-     } >
-      <div className="block self-center justify-self-center justify-items-center">
-      <h1 className="font-Radio text-5xl text-red-500">{time}</h1>
-      </div>
+        "backgroundImage": `url(${backGroundImg.img})`,
+         "backgroundRepeat": "no-repeat",
+         "backgroundSize": "cover"}
+         } >
+          <div className="block self-center justify-self-center justify-items-center">
+          <h1 className="font-Radio text-5xl text-red-500">{time}</h1>
+          </div>
 
-    </div>
-
+          <Side changeTheme= {{themeSettings, setThemeSettings}}/>
+    
+        </div>
 }
