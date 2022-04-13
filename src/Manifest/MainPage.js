@@ -2,7 +2,8 @@ import { data } from "autoprefixer";
 import React from "react";
 import Side from "./Major";
 import pcwallpaper from "./img/pcwallpaper.jpg"
-import mobilewallpaper from "./img/mobilewallpaper.jpg"
+
+
 
 
 export default function MainPage(){
@@ -20,7 +21,7 @@ export default function MainPage(){
      const localStorageImg = JSON.parse(localStorage.getItem("backgroundTheme")) || "snow" 
      const localStorageFont = JSON.parse(localStorage.getItem("font")) || "Radio" 
     const [themeSettings, setThemeSettings] = React.useState({
-        font: "Digital", backGroundTheme: localStorageImg , crypto: ""
+        font: localStorageFont, backGroundTheme: localStorageImg , crypto: ""
     })
      localStorage.setItem("backgroundTheme", JSON.stringify(themeSettings.backGroundTheme)) 
     localStorage.setItem("font", JSON.stringify(themeSettings.font)) 
@@ -52,18 +53,25 @@ export default function MainPage(){
         fetchImage()
     }, [])
     console.log(themeSettings.font)
-
+    const fontFamily = `font-${themeSettings.font}`
     return <div className={`w-screen h-screen flex flex-col  justify-center`} style= {{
         "backgroundImage": `url(${backGroundImg.img ? backGroundImg.img : pcwallpaper})`,
          "backgroundRepeat": "no-repeat",
          "backgroundSize": "cover"}
          } >
-          <div className="self-start justify-self-start text-left border border-red-400 w-screen absolute top-3">
-          <Side changeTheme= {{themeSettings, setThemeSettings}} info = {backGroundImg}/>
+          <div className="self-start justify-self-start text-left w-screen absolute top-3">
+          <Side changeTheme= {{themeSettings, setThemeSettings}} info = {backGroundImg.author}/>
              
           </div>
-          <div className="block self-center justify-self-center justify-items-center">
-          <h1 className= {`font-${themeSettings.font} text-5xl text-red-500`}>{time}</h1>
+          <p className="font-Digital"></p>
+          <p className="font-DigitalAlt"></p>
+          <p className="font-SegmentLED"></p>
+          <p className="font-Poppins"></p>
+          <p className="font-Radio"></p>
+          <div style={{
+              textShadow: "2px 2px 5px gray"
+          }} className="block self-center justify-self-center justify-items-center flex items-center justify-center ">
+          <h1 className= {`text-8xl text-gray-200 p-8 ${fontFamily} blur-none backdrop-filter backdrop-blur-md`}>{time}</h1>
           </div>
 
         
